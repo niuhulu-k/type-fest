@@ -45,12 +45,19 @@ const someInterface: SomeInterface = literal;
 
 function fn(object: Record<string, unknown>): void {}
 
+ Record 源码
+
+ type Record<K extends keyof any,T>={
+   [P in K]:T
+ }
+
 fn(literal); // Good: literal object type is sealed
 fn(someType); // Good: type is sealed
 fn(someInterface); // Error: Index signature for type 'string' is missing in type 'someInterface'. Because `interface` can be re-opened
 fn(someInterface as Simplify<SomeInterface>); // Good: transform an `interface` into a `type`
 ```
 
+ //  interface会被重写 https://github.com/niuhulu-k/typescript/issues/2
 @link https://github.com/microsoft/TypeScript/issues/15300
 
 @category Object

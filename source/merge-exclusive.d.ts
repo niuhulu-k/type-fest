@@ -1,6 +1,10 @@
 // Helper type. Not useful on its own.
 type Without<FirstType, SecondType> = {[KeyType in Exclude<keyof FirstType, keyof SecondType>]?: never};
-
+// Exclude<keyof FirstType, keyof SecondType>：去除 FirstType 里所有关于 SecondType 的项
+// {[KeyType in Exclude<keyof FirstType, keyof SecondType>]?: never}： 将 FirstType 的某些项(除 FirstType 里所有关于 SecondType 的项)去除
+//  FirstType：c
+// SecondType: a
+// {[KeyType in Exclude<keyof FirstType, keyof SecondType>]?: never} : 将 c 置空
 /**
 Create a type that has mutually exclusive keys.
 
@@ -38,4 +42,4 @@ export type MergeExclusive<FirstType, SecondType> =
 	(FirstType | SecondType) extends object ?
 		(Without<FirstType, SecondType> & SecondType) | (Without<SecondType, FirstType> & FirstType) :
 		FirstType | SecondType;
-
+// 为什么会有 Without？ ：确保在匹配到其中一个对象的类型时，另一个对象的类型（不包括第一个对象的类型）绝对不存在

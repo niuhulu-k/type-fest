@@ -3,6 +3,8 @@ import type {Simplify} from './simplify';
 
 type Merge_<FirstType, SecondType> = Except<FirstType, Extract<keyof FirstType, keyof SecondType>> & SecondType;
 
+//  Extract<keyof FirstType, keyof SecondType> 获取两种类型的的共有字段
+// Omit<FirstType,keyof SecondType> & SecondType
 /**
 Merge two types into a new type. Keys of the second type overrides keys of the first type.
 
