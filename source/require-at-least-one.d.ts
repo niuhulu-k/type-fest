@@ -48,7 +48,11 @@ Except<ObjectType, KeysType>;
 //   [P in K]: T[P];
 // };   // pick items from T, the keys of items are equal to K.
 
-// {}[keys]:????
+// {
+//  text: {text: () => string ; json?: () => string }
+// 	json: {json: () => string ; text?: () => string }
+// }['text' | 'json']
+//
 
 // 1, 2, 3 are important
 
