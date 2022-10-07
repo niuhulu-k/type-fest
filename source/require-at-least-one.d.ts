@@ -52,7 +52,7 @@ Except<ObjectType, KeysType>;
 //  text: {text: () => string ; json?: () => string }
 // 	json: {json: () => string ; text?: () => string }
 // }['text' | 'json']
-//
+// the same as object[key]
 
 // 1, 2, 3 are important
 

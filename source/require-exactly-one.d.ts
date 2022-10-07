@@ -29,6 +29,9 @@ const responder: RequireExactlyOne<Responder, 'text' | 'json'> = {
 */
 export type RequireExactlyOne<ObjectType, KeysType extends keyof ObjectType = keyof ObjectType> =
 	{[Key in KeysType]: (
-		Required<Pick<ObjectType, Key>> &
-		Partial<Record<Exclude<KeysType, Key>, never>>
+		Required<Pick<ObjectType, Key>> &  // 1、make key's type required
+		Partial<Record<Exclude<KeysType, Key>, never>> //  other keys' type are disallowed
 	)}[KeysType] & Omit<ObjectType, KeysType>;
+
+// type Exclude<T,U>= T extends U? never:T
+//   Make all other keys in `KeysType` optional

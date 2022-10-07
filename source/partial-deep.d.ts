@@ -61,7 +61,7 @@ const partialSettings: PartialDeep<Settings, {recurseIntoArrays: true}> = {
 */
 export type PartialDeep<T, Options extends PartialDeepOptions = {}> = T extends BuiltIns
 	? T
-	: T extends Map<infer KeyType, infer ValueType>
+	: T extends Map<infer KeyType, infer ValueType> //  infer: type inference in condition type.
 		? PartialMapDeep<KeyType, ValueType, Options>
 		: T extends Set<infer ItemType>
 			? PartialSetDeep<ItemType, Options>
@@ -109,3 +109,10 @@ Same as `PartialDeep`, but accepts only `object`s as inputs. Internal helper for
 type PartialObjectDeep<ObjectType extends object, Options extends PartialDeepOptions> = {
 	[KeyType in keyof ObjectType]?: PartialDeep<ObjectType[KeyType], Options>
 };
+
+// interface ReadonlyMap<K, V> {
+// 	forEach(callbackfn: (value: V, key: K, map: ReadonlyMap<K, V>) => void, thisArg?: any): void;
+// 	get(key: K): V | undefined;
+// 	has(key: K): boolean;
+// 	readonly size: number;
+// }

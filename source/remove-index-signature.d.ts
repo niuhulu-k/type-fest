@@ -102,3 +102,5 @@ export type RemoveIndexSignature<ObjectType> = {
 		? never
 		: KeyType]: ObjectType[KeyType];
 };
+
+// the key of	'[x: string]: any'  is not object
